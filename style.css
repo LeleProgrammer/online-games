@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* 头部区域 */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(135deg, #ffeaa7, #ff6b6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.85;
+}
+
+/* 游戏网格 */
+.games-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* 游戏卡片 */
+.game-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 即将推出的卡片不可点击 */
+.game-card.coming-soon {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.game-card.coming-soon:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.card-icon {
+    font-size: 4rem;
+}
+
+.game-card h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.game-card p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.play-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #ff6b6b;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    align-self: center;
+}
+
+.game-card:hover .play-btn {
+    background: #ff4757;
+    transform: scale(1.02);
+}
+
+.play-btn.disabled {
+    background: #555;
+    cursor: default;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 50px 20px 30px;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (max-width: 700px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .game-card {
+        padding: 20px;
+    }
+}
