@@ -113,6 +113,16 @@ h1 {
     transform: scale(0.97);
 }
 
+.tips {
+    background: #e8f4f8;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #2c3e50;
+    text-align: center;
+  }
+
 .message {
     font-size: 1.2rem;
     font-weight: bold;
