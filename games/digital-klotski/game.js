@@ -43,7 +43,7 @@ function init() {
 
 function shuffle() {
     if (done) return;
-    let step=randint(200,1000);
+    let step=randint(SIZE*SIZE*20,SIZE*SIZE*40);
     for (let i=1;i<=step;++i) {
         let available=[]
         if (x0>0) available.push([x0-1,y0]);
@@ -129,6 +129,35 @@ window.addEventListener("resize",()=>{
             calculateFontSize();
         }
     },50);
+});
+
+document.addEventListener("keydown",function(event) {
+    if (done) return;
+    let targetX=x0;
+    let targetY=y0;
+    switch (event.key) {
+        case "w":
+            targetX=x0+1;
+            targetY=y0;
+            break;
+        case "s":
+            targetX=x0-1;
+            targetY=y0;
+            break;
+        case "a":
+            targetX=x0;
+            targetY=y0+1;
+            break;
+        case "d":
+            targetX=x0;
+            targetY=y0-1;
+            break;
+        default:
+            return;
+    }
+    if (targetX>=0 && targetX<SIZE && targetY>=0 && targetY<SIZE) {
+        tryMove(targetX,targetY);
+    }
 });
 
 function restart() {
