@@ -18,40 +18,45 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Lele 游戏小站 | 益智解谜游戏合集</title>
-    <link rel="stylesheet" href="style.css?v=20260516">
-    <link rel="icon" type="image/png" href="images/site-icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Lele 游戏小站 | 益智解谜游戏合集</title>
+  <link rel="stylesheet" href="style.css?v=20260516">
+  <link rel="icon" type="image/png" href="images/site-icon.png">
 </head>
 <body>
-    <div class="hero">
-        <h1>🎮 Lele 游戏小站</h1>
-        <p>精选益智解谜小游戏，点开即玩</p>
+  <div class="hero">
+    <h1>🎮 Lele 游戏小站</h1>
+    <p>精选益智解谜小游戏，点开即玩</p>
+  </div>
+
+  <div class="games-grid" id="gamesGrid">
+    <a href="games/digital-klotski/size-select.html" class="game-card">
+      <img src="images/digital-klotski-icon.png" alt="数字华容道" class="card-icon">
+      <h3>Digital Klotski</h3>
+      <p>数字华容道</p>
+      <span class="play-btn">开始游戏 →</span>
+    </a>
+
+    <a href="games/sudoku/difficulty-select.html" class="game-card">
+      <img src="images/sudoku-icon.png" alt="数独" class="card-icon">
+      <h3>Sudoku</h3>
+      <p>数独</p>
+      <span class="play-btn">开始游戏 →</span>
+    </a>
+
+    <div class="game-card coming-soon">
+      <div class="card-icon"></div>
+      <h3>更多游戏</h3>
+      <p>正在开发中，敬请期待</p>
+      <span class="play-btn disabled">即将推出</span>
     </div>
+  </div>
 
-    <div class="games-grid" id="gamesGrid">
-        <!-- 游戏卡片 1 - 数字华容道 -->
-        <a href="games/digital-klotski/size-select.html" class="game-card">
-            <img src="images/digital-klotski-icon.png" alt="数字华容道" class="card-icon">
-            <h3>Digital Klotski</h3>
-            <p>数字华容道</p>
-            <span class="play-btn">开始游戏 →</span>
-        </a>
+  <footer>
+    <p>✨ 所有游戏均使用纯前端技术，无需下载 ✨</p>
+  </footer>
 
-        <!-- 游戏卡片 2 - 即将推出 -->
-        <div class="game-card coming-soon">
-            <div class="card-icon">❓</div>
-            <h3>更多游戏</h3>
-            <p>正在开发中，敬请期待</p>
-            <span class="play-btn disabled">即将推出</span>
-        </div>
-    </div>
-
-    <footer>
-        <p>✨ 所有游戏均使用纯前端技术，无需下载 ✨</p>
-    </footer>
-
-    <script src="script.js?v=20260516"></script>
+  <script src="script.js?v=20260516"></script>
 </body>
 </html>

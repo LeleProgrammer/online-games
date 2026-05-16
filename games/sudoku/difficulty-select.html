@@ -1,0 +1,88 @@
+<!--
+  Copyright (C) 2026 Lele
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>选择难度 | Sudoku</title>
+  <link rel="stylesheet" href="difficulty.css?v=20260516">
+  <link rel="icon" type="image/png" href="../../images/site-icon.png">
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back-link">← 返回大厅</a>
+
+    <div class="game-icon">🧩</div>
+    <h1>Sudoku</h1>
+    <p class="subtitle">选择你想要的难度</p>
+
+    <div class="difficulty-options">
+      <a href="game.html?diff=easy" class="difficulty-card easy">
+        <div class="diff-icon">🌱</div>
+        <div class="diff-info">
+          <h3>简单</h3>
+          <p>预填数字较多 · 适合新手</p>
+        </div>
+        <div class="diff-stats">
+          <span>约 20-30 个空格</span>
+        </div>
+      </a>
+
+      <a href="game.html?diff=medium" class="difficulty-card medium">
+        <div class="diff-icon">⚡</div>
+        <div class="diff-info">
+          <h3>中等</h3>
+          <p>经典体验 · 平衡挑战</p>
+        </div>
+        <div class="diff-stats">
+          <span>约 45-50 个空格</span>
+        </div>
+      </a>
+
+      <a href="game.html?diff=hard" class="difficulty-card hard">
+        <div class="diff-icon">🔥</div>
+        <div class="diff-info">
+          <h3>困难</h3>
+          <p>需要推理技巧</p>
+        </div>
+        <div class="diff-stats">
+          <span>约 55-60 个空格</span>
+        </div>
+      </a>
+
+      <a href="game.html?diff=expert" class="difficulty-card expert">
+        <div class="diff-icon">💀</div>
+        <div class="diff-info">
+          <h3>大师</h3>
+          <p>极少数预填 · 极致挑战</p>
+        </div>
+        <div class="diff-stats">
+          <span>约 65+ 个空格</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="info-text">
+      💡 提示：游戏包含计时器和自动冲突检测
+    </div>
+  </div>
+
+  <script src="difficulty.js?v=20260516"></script>
+</body>
+</html>

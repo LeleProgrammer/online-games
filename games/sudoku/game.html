@@ -1,0 +1,68 @@
+<!--
+  Copyright (C) 2026 Lele
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Sudoku</title>
+  <link rel="stylesheet" href="game.css?v=20260516">
+  <link rel="icon" type="image/png" href="../../images/site-icon.png">
+</head>
+<body>
+<div class="container">
+  <h1>🧩 Sudoku</h1>
+  <p class="subtitle">数独</p>
+
+  <div class="back-links">
+    <a href="../../index.html" class="back-link">← 返回大厅</a>
+    <a href="difficulty-select.html" class="back-link">← 返回难度选择</a>
+  </div>
+
+  <div class="game-info">
+    <span>🎯 难度：<span id="difficultyLabel"></span></span>
+    <span>⏱️ <span id="timer">0</span> 秒</span>
+    <button id="newGameBtn">✨ 新游戏</button>
+  </div>
+
+  <div class="sudoku-grid">
+    <table class="sudoku-board" id="sudokuTable">
+    </table>
+  </div>
+
+  <div class="number-panel" id="numberPanel">
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <div class="instructions">
+    <h4>📖 游戏说明</h4>
+    <br>
+    <p>• 同一个 3x3 的宫格内，每个数字必须恰好出现一次</p>
+    <p>• 同一行内，每个数字必须恰好出现一次</p>
+    <p>• 同一列内，每个数字必须恰好出现一次</p>
+    <p>• 点击空白格选中，再点数字按钮（或按键盘 1~9）填入数字</p>
+    <p>• 点击已填数字格可修改，按 ⌫ 或 Delete 清空</p>
+    <p>• 预置题目数字为蓝色，玩家数字为绿色</p>
+    <p>• 全部填满且无冲突即获胜 🎉</p>
+  </div>
+</div>
+
+<script src="game.js?v=20260516"></script>
+</body>
+</html>

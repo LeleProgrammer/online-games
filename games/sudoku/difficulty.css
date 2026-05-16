@@ -1,0 +1,188 @@
+/*
+ * Copyright (C) 2026 Lele
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 36px;
+  padding: 30px 25px 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 550px;
+  width: 100%;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2c7da0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #1f5068;
+  transform: translateX(-3px);
+}
+
+.game-icon {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #5a6e7c;
+  font-size: 0.85rem;
+  margin-bottom: 30px;
+}
+
+.difficulty-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.difficulty-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #f0f4f8;
+  border-radius: 24px;
+  padding: 18px 22px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.difficulty-card:hover {
+  transform: translateX(6px);
+  background: #e8edf2;
+}
+
+.difficulty-card.easy:hover {
+  border-color: #2ecc71;
+}
+.difficulty-card.medium:hover {
+  border-color: #f39c12;
+}
+.difficulty-card.hard:hover {
+  border-color: #e67e22;
+}
+.difficulty-card.expert:hover {
+  border-color: #e74c3c;
+}
+
+.diff-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  text-align: center;
+}
+
+.diff-info {
+  flex: 1;
+  text-align: left;
+}
+
+.diff-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.difficulty-card.easy .diff-info h3 { color: #27ae60; }
+.difficulty-card.medium .diff-info h3 { color: #e67e22; }
+.difficulty-card.hard .diff-info h3 { color: #e67e22; }
+.difficulty-card.expert .diff-info h3 { color: #c0392b; }
+
+.diff-info p {
+  font-size: 0.8rem;
+  color: #5a6e7c;
+}
+
+.diff-stats span {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #2c3e50;
+  white-space: nowrap;
+}
+
+.info-text {
+  background: #eef2f5;
+  border-radius: 20px;
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  color: #2c3e50;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 20px 16px 30px;
+  }
+  
+  .difficulty-card {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  
+  .diff-icon {
+    font-size: 2rem;
+    width: 45px;
+  }
+  
+  .diff-info h3 {
+    font-size: 1.1rem;
+  }
+  
+  .diff-info p {
+    font-size: 0.7rem;
+  }
+  
+  .diff-stats span {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+}
