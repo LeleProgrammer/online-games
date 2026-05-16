@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>Digital Klotski</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Digital Klotski</h1>
+    <p class="subtitle">数字华容道</p>
+    <a href="size-select.html" class="back-link">← 返回选择大小</a>
+    <br>
+    <a href="../../index.html" class="back-link">← 返回大厅</a>
+
+    <div class="game-info">
+      <span>步数：<span id="moveCount">0</span></span>
+      <button id="shuffleBtn">重新打乱</button>
+    </div>
+
+    <div class="puzzle-grid" id="puzzleGrid"></div>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

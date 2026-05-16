@@ -76,7 +76,11 @@ body {
 }
 
 .card-icon {
-    font-size: 4rem;
+    width: 160px;      /* 固定宽度 */
+    height: 160px;     /* 固定高度 */
+    object-fit: contain;  /* 保持比例，不裁剪 */
+    display: block;
+    margin: 0 auto 10px;   /* 居中，底部留白 */
 }
 
 .game-card h3 {
