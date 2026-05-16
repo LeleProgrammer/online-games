@@ -4,7 +4,7 @@
 
 ## 🎯 在线游玩
 
-[https://leleprogrammer.github.io/online-games/index.html](https://leleprogrammer.github.io/online-games/index.html)
+[https://leleprogrammer.github.io/online-games](https://leleprogrammer.github.io/online-games)
 
 ## ⬇️ 游戏列表
 
@@ -16,7 +16,7 @@
 ## 🚀 本地运行
 
 ```bash
-git clone https://github.com//LeleProgrammer/online-games.git
+git clone https://github.com/LeleProgrammer/online-games.git
 cd online-games
 ```
 
