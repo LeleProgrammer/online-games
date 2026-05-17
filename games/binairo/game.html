@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Binairo · 黑白棋</title>
+  <link rel="stylesheet" href="game.css?v=20260517">
+  <link rel="icon" type="image/png" href="../../images/site-icon.png">
+</head>
+<body>
+  <div class="container">
+    <h1>⚫ Binairo · 黑白棋</h1>
+    <p class="subtitle">每行每列黑白数量相等 · 禁止三个连续相同</p>
+
+    <div class="back-links">
+      <a href="../../index.html" class="back-link">← 返回大厅</a>
+    </div>
+
+    <div class="game-info">
+      <span>🎯 难度：中等 · 6×6</span>
+      <span>⚫ <span id="blackCount">0</span> / ⚪ <span id="whiteCount">0</span></span>
+      <button id="newGameBtn">✨ 新游戏</button>
+    </div>
+
+    <!-- 游戏网格（带格子间提示） -->
+    <div class="binairo-wrapper">
+      <div class="binairo-grid" id="binairoGrid"></div>
+    </div>
+
+    <div class="action-bar">
+      <button class="action-btn" data-action="black">⚫ 黑子</button>
+      <button class="action-btn" data-action="white">⚪ 白子</button>
+      <button class="action-btn clear-btn" data-action="clear">🗑️ 清除</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="instructions">
+      <details>
+        <summary>📖 游戏规则</summary>
+        <p>• 每行每列中 ⚫ 和 ⚪ 数量相等（6×6 中各 3 个）</p>
+        <p>• 禁止三个相同颜色连续排列（水平或垂直）</p>
+        <p>• 每行每列不能完全相同</p>
+        <p>• <strong>＝</strong> 表示相邻两格必须相同，<strong>✗</strong> 表示必须不同</p>
+      </details>
+    </div>
+  </div>
+
+  <script src="game.js?v=20260517"></script>
+</body>
+</html>
