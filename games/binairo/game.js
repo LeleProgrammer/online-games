@@ -20,7 +20,9 @@ let board=[];
 let solution=[];
 let markRight=[];
 let markDown=[];
-let markPercentage=30; // [0,100]
+let markPercentage=15; // [0,100]
+let selectX=-1;
+let selectY=-1;
 
 function randint(l,r) {
     return Math.floor(Math.random()*(r-l+1))+l;
@@ -75,4 +77,105 @@ function newGame() {
             }
         }
     }
+    renderGrid();
 }
+
+function renderGrid() {
+    const container=document.getElementById("binairoGrid");
+    container.innerHTML="";
+    container.style.gridTemplateColumns="1fr";
+    for (let i=0;i<SIZE;++i) {
+        const rowDiv=document.createElement("div");
+        rowDiv.className="grid-row";
+        for (let j=0;j<SIZE;++j) {
+            const cell=createCell(i,j);
+            rowDiv.appendChild(cell);
+            if (j<SIZE-1) {
+                const conn=createHorizontalConnector(i,j);
+                rowDiv.appendChild(conn);
+            }
+        }
+        container.appendChild(rowDiv);
+        if (i<SIZE-1) {
+            const rowDiv=document.createElement("div");
+            rowDiv.className="vertical-connectors";
+            for (let j=0;j<SIZE;++j) {
+                const conn=createVerticalConnector(i,j);
+                rowDiv.appendChild(conn);
+                if (j<SIZE-1) {
+                    const space=document.createElement("div");
+                    space.style.width="30px";
+                    space.style.height="30px";
+                    if (window.innerWidth<=600) space.style.width="24px";
+                    if (window.innerWidth<=480) space.style.width="20px";
+                    space.style.backgroundColor="#2c3e50";
+                    rowDiv.appendChild(space);
+                }
+            }
+            container.appendChild(rowDiv)
+        }
+    }
+}
+
+function selectCell(i,j) {
+    ;
+}
+
+function createCell(i,j) {
+    const cell=document.createElement("div");
+    cell.className="cell";
+    const value=board[i][j];
+    if (value===1) {
+        cell.textContent="⚫";
+        cell.classList.add("black");
+    } else if (value===0) {
+        cell.textContent="⚪";
+        cell.classList.add("white");
+    } else {
+        cell.textContent="";
+    }
+    if (selectX===i && selectY===j) {
+        cell.classList.append("selected");
+    }
+    cell.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        selectCell(i,j);
+    })
+    return cell;
+}
+
+function createHorizontalConnector(i,j) {
+    const conn=document.createElement("div");
+    conn.className="horizontal-connector";
+    const mark=markRight[i][j];
+    if (mark===0) {
+        conn.textContent="=";
+        conn.classList.add("equal");
+    } else if (mark===1) {
+        conn.textContent='X';
+        conn.classList.add("cross");
+    } else {
+        conn.textContent="";
+        conn.classList.add("empty");
+    }
+    return conn;
+}
+
+function createVerticalConnector(i,j) {
+    const conn=document.createElement("div");
+    conn.className="vertical-connector";
+    const mark=markDown[i][j];
+    if (mark===0) {
+        conn.textContent="=";
+        conn.classList.add("equal");
+    } else if (mark===1) {
+        conn.textContent='X';
+        conn.classList.add("cross");
+    } else {
+        conn.textContent="";
+        conn.classList.add("empty");
+    }
+    return conn;
+}
+
+newGame();
