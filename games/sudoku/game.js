@@ -266,21 +266,22 @@ function init() {
 const label=document.getElementById("difficultyLabel");
 const params=new URLSearchParams(window.location.search);
 const diff=params.get("diff");
-if (diff=="easy") {
+if (diff==="easy") {
     label.textContent="简单";
     deleteTotal=randint(20,30);
-} else if (diff=="medium") {
+} else if (diff==="medium") {
     label.textContent="中等";
     deleteTotal=randint(45,50);
-} else if (diff=="hard") {
+} else if (diff==="hard") {
     label.textContent="困难";
     deleteTotal=randint(55,60);
-} else if (diff=="expert") {
+} else if (diff==="expert") {
     label.textContent="大师";
     deleteTotal=randint(65,66);
 } else {
     label.textContent="简单";
-    deleteTotal=randint(20,30);
+    // deleteTotal=randint(20,30);
+    deleteTotal=1;
 }
 
 init();
