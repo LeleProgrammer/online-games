@@ -1,0 +1,66 @@
+<!--
+  Copyright (C) 2026 Lele
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Futoshiki</title>
+  <link rel="stylesheet" href="game.css?v=20260518_1">
+  <link rel="icon" type="image/png" href="../../images/site-icon.png">
+</head>
+<body>
+  <div class="container">
+    <h1>🔢 Futoshiki</h1>
+    <p class="subtitle">不等式</p>
+
+    <div class="back-links">
+      <a href="../../index.html" class="back-link">← 返回大厅</a>
+      <a href="difficulty-select.html" class="back-link">← 返回难度选择</a>
+    </div>
+
+    <div class="game-info">
+      <span>🎯 难度：<span id="difficulty"></span></span>
+      <span>用时：<span id="timer"></span></span>
+      <button id="newGameBtn">✨ 新游戏</button>
+    </div>
+
+    <!-- 游戏网格（带格子间提示） -->
+    <div class="futoshiki-wrapper">
+      <div class="futoshiki-grid" id="futoshikiGrid"></div>
+    </div>
+
+    <div class="action-bar">
+      <!-- <button class="action-btn" data-action="black">⚫ 黑子</button> -->
+      <button class="action-btn clear-btn" data-action="clear">🗑️ 清除</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div class="instructions">
+      <p>📖 游戏规则</p>
+      <p>• 每行每列中每个数字出现且仅出现一次</p>
+      <p>• 存在不等号的相邻格子必须满足不等号限制</p>
+      <p>• 单击按钮或键盘上的数字按键放置数字</p>
+      <p>• 单击 Backspace 或 delete 清除</p>
+    </div>
+  </div>
+
+  <script src="game.js?v=20260518_1"></script>
+</body>
+</html>
