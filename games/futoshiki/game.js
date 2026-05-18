@@ -26,12 +26,16 @@ let toMark=6;
 let toRemove=6;
 let selectX=-1;
 let selectY=-1;
+let done=0;
 
 function randint(l,r) {
     return Math.floor(Math.random()*(r-l+1))+l;
 }
 
 function newGame() {
+    done=0;
+    selectX=-1;
+    selectY=-1;
     board=[];
     solution=[];
     locked=[];
@@ -201,5 +205,28 @@ function selectCell(i,j) {
     }
     renderGrid();
 }
+
+function setValue(value) {
+    ;
+}
+
+function clearValue() {
+    ;
+}
+
+const actionDiv=document.getElementById("actionDiv");
+
+for (let i=1;i<=SIZE;++i) {
+    const numBtn=document.createElement("button");
+    numBtn.className="action-btn";
+    numBtn.textContent=i;
+    actionDiv.appendChild(numBtn);
+}
+
+const clearBtn=document.createElement("button");
+clearBtn.className="action-btn";
+clearBtn.classList.add("clear-btn");
+clearBtn.textContent="🗑️ 清除";
+actionDiv.appendChild(clearBtn);
 
 newGame();
