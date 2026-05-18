@@ -44,7 +44,7 @@ function newGame() {
         markDown.push([]);
         for (let j=0;j<SIZE;++j) {
             board[i].push((j+i)%SIZE+1);
-            locked[i].push(0);
+            locked[i].push(1);
             markRight[i].push(0);
             markDown[i].push(0);
         }
@@ -68,7 +68,7 @@ function newGame() {
         const i=available[pos][0];
         const j=available[pos][1];
         available.splice(pos,1);
-        locked[i][j]=1;
+        locked[i][j]=0;
         board[i][j]=0;
     }
     available=[];
@@ -186,6 +186,20 @@ function createVerticalConnector(i,j) {
         conn.classList.add("detail");
     }
     return conn;
+}
+
+function selectCell(i,j) {
+    if (selectX===i && selectY===j) {
+        selectX=-1;
+        selectY=-1;
+    } else if (locked[i][j]===0) {
+        selectX=i;
+        selectY=j;
+    } else {
+        selectX=-1;
+        selectY=-1;
+    }
+    renderGrid();
 }
 
 newGame();
