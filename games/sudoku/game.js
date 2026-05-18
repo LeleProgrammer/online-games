@@ -280,8 +280,7 @@ if (diff==="easy") {
     deleteTotal=randint(65,66);
 } else {
     label.textContent="简单";
-    // deleteTotal=randint(20,30);
-    deleteTotal=1;
+    deleteTotal=randint(20,30);
 }
 
 init();
