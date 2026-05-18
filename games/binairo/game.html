@@ -1,24 +1,42 @@
+<!--
+  Copyright (C) 2026 Lele
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Binairo</title>
-  <link rel="stylesheet" href="game.css?v=20260517">
+  <link rel="stylesheet" href="game.css?v=20260518_1">
   <link rel="icon" type="image/png" href="../../images/site-icon.png">
 </head>
 <body>
   <div class="container">
     <h1>⚫ Binairo</h1>
-    <p class="subtitle">黑白棋</p>
+    <p class="subtitle">黑白</p>
 
     <div class="back-links">
       <a href="../../index.html" class="back-link">← 返回大厅</a>
+      <a href="difficulty-select.html" class="back-link">← 返回难度选择</a>
     </div>
 
     <div class="game-info">
-      <span>🎯 难度：中等 · 6×6</span>
-      <span>⚫ <span id="blackCount">0</span> / ⚪ <span id="whiteCount">0</span></span>
+      <span>🎯 难度：<span id="difficulty"></span></span>
+      <span>用时：<span id="timer"></span></span>
       <button id="newGameBtn">✨ 新游戏</button>
     </div>
 
@@ -36,15 +54,15 @@
     <div class="message" id="message"></div>
 
     <div class="instructions">
-      <details>
-        <summary>📖 游戏规则</summary>
-        <p>• 每行每列中 ⚫ 和 ⚪ 数量相等</p>
-        <p>• 禁止三个相同颜色连续排列（水平或垂直）</p>
-        <p>• <strong>＝</strong> 表示相邻两格必须相同，<strong>✗</strong> 表示必须不同</p>
-      </details>
+      <p>📖 游戏规则</p>
+      <p>• 每行每列中 ⚫ 和 ⚪ 数量相等</p>
+      <p>• 禁止三个相同颜色连续排列（水平或垂直）</p>
+      <p>• <strong>＝</strong> 表示相邻两格必须相同，<strong>✗</strong> 表示必须不同</p>
+      <p>• 单击 0 放置白字，1 放置黑子</p>
+      <p>• 单击 Backspace 或 delete 清除</p>
     </div>
   </div>
 
-  <script src="game.js?v=20260517"></script>
+  <script src="game.js?v=20260518_1"></script>
 </body>
 </html>

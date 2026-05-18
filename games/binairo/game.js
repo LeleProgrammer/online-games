@@ -17,29 +17,41 @@
 
 let SIZE=6;
 let board=[];
+let locked=[];
 let solution=[];
 let markRight=[];
 let markDown=[];
-let markPercentage=15; // [0,100]
+let markCnt=0;
+let toRemove=0;
 let selectX=-1;
 let selectY=-1;
+let done=false;
+let startTime=performance.now();
+let timerEvent=null;
 
 function randint(l,r) {
     return Math.floor(Math.random()*(r-l+1))+l;
 }
 
 function newGame() {
+    startTime=performance.now();
+    done=false;
     board=[];
     markRight=[];
     markDown=[];
+    locked=[];
+    selectX=-1;
+    selectY=-1;
     for (let i=0;i<SIZE;++i) {
         board.push([]);
         markRight.push([]);
         markDown.push([]);
+        locked.push([]);
         for (let j=0;j<SIZE;++j) {
             board[i].push((i+j)&1);
             markRight[i].push(-1);
             markDown[i].push(-1);
+            locked[i].push(1);
         }
     }
     for (let i=1;i<SIZE;++i) {
@@ -63,21 +75,42 @@ function newGame() {
         solution.push([]);
         for (let j=0;j<SIZE;++j) solution[i].push(board[i][j]);
     }
+    let available=[]
     for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) {
-        if (i!==SIZE-1) { // Down
-            if (randint(1,100)<=markPercentage) {
-                if (solution[i][j]===solution[i+1][j]) markDown[i][j]=0;
-                else markDown[i][j]=1;
-            }
+        if (i!==SIZE-1) available.push([i,j,"down"]);
+        if (j!==SIZE-1) available.push([i,j,"right"]);
+    }
+    for (let g=1;g<=markCnt;++g) {
+        let pos=randint(0,available.length-1);
+        let i=available[pos][0];
+        let j=available[pos][1];
+        let d=available[pos][2];
+        if (d==="down") { // Down
+            if (solution[i][j]===solution[i+1][j]) markDown[i][j]=0;
+            else markDown[i][j]=1;
+        } else if (d==="right") { // Right
+            if (solution[i][j]===solution[i][j+1]) markRight[i][j]=0;
+            else markRight[i][j]=1;
         }
-        if (j!==SIZE-1) { // Right
-            if (randint(1,100)<=markPercentage) {
-                if (solution[i][j]===solution[i][j+1]) markRight[i][j]=0;
-                else markRight[i][j]=1;
-            }
-        }
+        available.splice(pos,1);
+    }
+    available=[]
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) available.push([i,j]);
+    for (let g=1;g<=toRemove;++g) {
+        let pos=randint(0,available.length-1);
+        let i=available[pos][0];
+        let j=available[pos][1];
+        locked[i][j]=0;
+        board[i][j]=-1;
+        available.splice(pos,1);
     }
     renderGrid();
+    if (timerEvent) clearInterval(timerEvent);
+    let timer=document.getElementById("timer");
+    timerEvent=setInterval(()=>{
+        const elapsed=(performance.now()-startTime)/1000;
+        timer.textContent=elapsed.toFixed(2);
+    },30);
 }
 
 function renderGrid() {
@@ -118,7 +151,17 @@ function renderGrid() {
 }
 
 function selectCell(i,j) {
-    ;
+    if (selectX===i && selectY===j) {
+        selectX=-1;
+        selectY=-1;
+    } else if (locked[i][j]===0) {
+        selectX=i;
+        selectY=j;
+    } else {
+        selectX=-1;
+        selectY=-1;
+    }
+    renderGrid();
 }
 
 function createCell(i,j) {
@@ -133,9 +176,11 @@ function createCell(i,j) {
         cell.classList.add("white");
     } else {
         cell.textContent="";
+        cell.classList.add("empty");
     }
+    if (locked[i][j]===1) cell.classList.add("locked");
     if (selectX===i && selectY===j) {
-        cell.classList.append("selected");
+        cell.classList.add("selected");
     }
     cell.addEventListener("click",(e)=>{
         e.stopPropagation();
@@ -178,4 +223,120 @@ function createVerticalConnector(i,j) {
     return conn;
 }
 
+function showMessage(msg) {
+    const div=document.getElementById("message");
+    div.textContent=msg;
+}
+
+function clearMessage() {
+    const div=document.getElementById("message");
+    div.textContent="";
+}
+
+function setValue(value) {
+    if (done) return;
+    if (selectX===-1 || selectY===-1) {
+        showMessage("请先选择一个格子");
+        return;
+    }
+    if (locked[selectX][selectY]===1) {
+        showMessage("你无法修改这个格子");
+        return;
+    }
+    if (board[selectX][selectY]===value) {
+        board[selectX][selectY]=-1;
+        showMessage("已删除");
+    } else {
+        board[selectX][selectY]=value;
+        showMessage(`已填入 ${value===0?'⚪ 白子':'⚫ 黑子'}`);
+    }
+    renderGrid();
+    if (checkVictory()) {
+        showMessage("🎉 You Win! 🎉");
+        done=true;
+        if (timerEvent) clearInterval(timerEvent);
+        timerEvent=null;
+    }
+}
+
+function clearValue() {
+    if (done) return;
+    if (selectX===-1 || selectY===-1) {
+        showMessage("请先选择一个格子");
+        return;
+    }
+    if (locked[selectX][selectY]===1) {
+        showMessage("你无法修改这个格子");
+        return;
+    }
+    if (board[selectX][selectY]===-1) return;
+    board[selectX][selectY]=-1;
+    showMessage("已删除");
+    renderGrid();
+}
+
+function checkVictory() {
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) if (board[i][j]===-1) return false;
+    for (let i=0;i<SIZE;++i) {
+        let count=0;
+        for (let j=0;j<SIZE;++j) if (board[i][j]===0) count++;
+        if (count*2!==SIZE) return false;
+    }
+    for (let j=0;j<SIZE;++j) {
+        let count=0;
+        for (let i=0;i<SIZE;++i) if (board[i][j]===0) count++;
+        if (count*2!==SIZE) return false;
+    }
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE-2;++j) if (board[i][j]===board[i][j+1] && board[i][j]===board[i][j+2]) return false;
+    for (let j=0;j<SIZE;++j) for (let i=0;i<SIZE-2;++i) if (board[i][j]===board[i+1][j] && board[i][j]===board[i+2][j]) return false;
+    return true;
+}
+
+function bindActions() {
+    const blackBtn=document.querySelector("[data-action='black']");
+    const whiteBtn=document.querySelector("[data-action='white']");
+    const clearBtn=document.querySelector("[data-action='clear']");
+    const newBtn=document.getElementById("newGameBtn");
+    blackBtn.addEventListener("click",()=>setValue(1));
+    whiteBtn.addEventListener("click",()=>setValue(0));
+    clearBtn.addEventListener("click",clearValue);
+    newBtn.addEventListener("click",newGame);
+    document.addEventListener("keydown",function(event) {
+        const key=event.key;
+        if (key==="0" || key==="NumPad0") {
+            setValue(0);
+            event.preventDefault();
+        } else if (key==="1" || key==="NumPad1") {
+            setValue(1);
+            event.preventDefault();
+        } else if (key==="Backspace" || key==="Delete") {
+            clearValue();
+            event.preventDefault();
+        }
+    })
+}
+
+const label=document.getElementById("difficulty");
+const params=new URLSearchParams(window.location.search);
+const diff=params.get("diff");
+
+if (diff==="easy") {
+    label.textContent="简单";
+    toRemove=randint(13,15);
+    markCnt=4;
+} else if (diff==="medium") {
+    label.textContent="中等";
+    toRemove=randint(21,23);
+    markCnt=7;
+} else if (diff==="hard") {
+    label.textContent="困难";
+    toRemove=randint(31,33);
+    markCnt=10;
+} else {
+    label.textContent="简单";
+    toRemove=randint(13,15);
+    markCnt=4;
+}
+
 newGame();
+bindActions();
