@@ -149,7 +149,9 @@ function renderGrid() {
         const wrapper=document.querySelector(".binairo-wrapper");
         const grid=document.getElementById("binairoGrid");
         const containerWidth=wrapper.clientWidth;
-        const boardWidth=grid.scrollWidth;
+        const baseCellSize=52;
+        const connWidth=baseCellSize*0.55;
+        const boardWidth=SIZE*baseCellSize+(SIZE-1)*connWidth+20;
         if (boardWidth>containerWidth) {
             const scale=containerWidth/boardWidth*0.95;
             const newCellSize=52*scale;
