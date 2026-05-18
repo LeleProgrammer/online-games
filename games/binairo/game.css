@@ -109,12 +109,21 @@ h1 {
 .binairo-wrapper {
   display: flex;
   justify-content: center;
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .binairo-grid {
-  display: inline-grid;
-  gap: 0;
+  --cell-size: 52px;
+  display: inline-block;
+  background-color: #2c3e50;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.binairo-grid {
+  --cell-size: 52px;
+  --conn-ratio: 0.55;
+  display: inline-block;
   background-color: #2c3e50;
   padding: 10px;
   border-radius: 20px;
@@ -123,20 +132,25 @@ h1 {
 /* 行样式 */
 .grid-row {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 单元格 */
 .cell {
-  width: 52px;
-  height: 52px;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  flex-shrink: 0;
+  flex-grow: 0;
   background-color: #fef9e8;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: calc(var(--cell-size) * 0.45);
   font-weight: bold;
   cursor: pointer;
-  transition: 0.1s;
+  box-sizing: border-box;
 }
 
 .cell.selected {
@@ -173,17 +187,19 @@ h1 {
 
 /* 水平连接线（格子之间） */
 .horizontal-connector {
-  width: 30px;
-  height: 52px;
+  width: calc(var(--cell-size) * 0.55);
+  height: var(--cell-size);
+  flex-shrink: 0;
+  flex-grow: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: calc(var(--cell-size) * 0.3);
   background-color: #2c3e50;
   cursor: pointer;
-  transition: 0.1s;
+  box-sizing: border-box;
 }
+
 
 .horizontal-connector.equal {
   color: #27ae60;
@@ -200,22 +216,35 @@ h1 {
   background-color: #34495e;
 }
 
+.spacer {
+  width: calc(var(--cell-size) * 0.55);
+  height: calc(var(--cell-size) * 0.55);
+  flex-shrink: 0;      /* 防止被压缩 */
+  flex-grow: 0;        /* 防止被拉伸 */
+  background-color: #2c3e50;
+  box-sizing: border-box;
+}
+
 /* 垂直连接线（行之间） */
 .vertical-connectors {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .vertical-connector {
-  width: 52px;
-  height: 30px;
+  width: var(--cell-size);
+  height: calc(var(--cell-size) * 0.55);
+  flex-shrink: 0;      /* 防止被压缩 */
+  flex-grow: 0;        /* 防止被拉伸 */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: calc(var(--cell-size) * 0.3);
   background-color: #2c3e50;
   cursor: pointer;
-  transition: 0.1s;
+  box-sizing: border-box;
 }
 
 .vertical-connector.equal {
@@ -291,38 +320,20 @@ details summary {
   color: #1e4663;
 }
 
+@media (min-width: 800px) {
+  .binairo-grid {
+    --cell-size: 56px;
+  }
+}
+
 @media (max-width: 600px) {
-  .cell {
-    width: 42px;
-    height: 42px;
-    font-size: 22px;
-  }
-  .horizontal-connector {
-    width: 24px;
-    height: 42px;
-    font-size: 14px;
-  }
-  .vertical-connector {
-    width: 42px;
-    height: 24px;
-    font-size: 14px;
+  .binairo-grid {
+    --cell-size: min(42px, 10vw);
   }
 }
 
 @media (max-width: 480px) {
-  .cell {
-    width: 34px;
-    height: 34px;
-    font-size: 18px;
-  }
-  .horizontal-connector {
-    width: 20px;
-    height: 34px;
-    font-size: 12px;
-  }
-  .vertical-connector {
-    width: 34px;
-    height: 20px;
-    font-size: 12px;
+  .binairo-grid {
+    --cell-size: min(36px, 12vw);
   }
 }

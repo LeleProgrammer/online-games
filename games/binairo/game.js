@@ -137,17 +137,27 @@ function renderGrid() {
                 rowDiv.appendChild(conn);
                 if (j<SIZE-1) {
                     const space=document.createElement("div");
-                    space.style.width="30px";
-                    space.style.height="30px";
-                    if (window.innerWidth<=600) space.style.width="24px";
-                    if (window.innerWidth<=480) space.style.width="20px";
-                    space.style.backgroundColor="#2c3e50";
+                    space.className="spacer";
                     rowDiv.appendChild(space);
                 }
             }
             container.appendChild(rowDiv)
         }
     }
+    // auto scale board
+    setTimeout(()=>{
+        const wrapper=document.querySelector(".binairo-wrapper");
+        const grid=document.getElementById("binairoGrid");
+        const containerWidth=wrapper.clientWidth;
+        const boardWidth=grid.scrollWidth;
+        if (boardWidth>containerWidth) {
+            const scale=containerWidth/boardWidth*0.95;
+            const newCellSize=52*scale;
+            grid.style.setProperty("--cell-size",`${newCellSize}px`);
+        } else {
+            grid.style.setProperty("--cell-size","52px");
+        }
+    },10);
 }
 
 function selectCell(i,j) {
@@ -323,7 +333,10 @@ function bindActions() {
             clearValue();
             event.preventDefault();
         }
-    })
+    });
+    window.addEventListener("resize",()=>{
+        renderGrid;
+    });
 }
 
 const label=document.getElementById("difficulty");
