@@ -342,23 +342,86 @@ function bindActions() {
 const label=document.getElementById("difficulty");
 const params=new URLSearchParams(window.location.search);
 const diff=params.get("diff");
+let size=params.get("size");
 
-if (diff==="easy") {
-    label.textContent="简单";
-    toRemove=randint(13,15);
-    markCnt=4;
-} else if (diff==="medium") {
-    label.textContent="中等";
-    toRemove=randint(21,23);
-    markCnt=7;
-} else if (diff==="hard") {
-    label.textContent="困难";
-    toRemove=randint(31,33);
-    markCnt=10;
+if (size!=="6" && size!=="10" && size!=="14" && size!=="20") {
+    size="6";
+}
+
+SIZE=parseInt(size);
+
+if (size==="6") {
+    if (diff==="easy") {
+        label.textContent="简单";
+        toRemove=randint(13,15);
+        markCnt=4;
+    } else if (diff==="medium") {
+        label.textContent="中等";
+        toRemove=randint(21,23);
+        markCnt=7;
+    } else if (diff==="hard") {
+        label.textContent="困难";
+        toRemove=randint(31,33);
+        markCnt=10;
+    } else {
+        label.textContent="简单";
+        toRemove=randint(13,15);
+        markCnt=4;
+    }
+} else if (size==="10") {
+    if (diff==="easy") {
+        label.textContent="简单";
+        toRemove=randint(36,42);
+        markCnt=11;
+    } else if (diff==="medium") {
+        label.textContent="中等";
+        toRemove=randint(59,65);
+        markCnt=20;
+    } else if (diff==="hard") {
+        label.textContent="困难";
+        toRemove=randint(86,92);
+        markCnt=28;
+    } else {
+        label.textContent="简单";
+        toRemove=randint(36,42);
+        markCnt=11;
+    }
+} else if (size==="14") {
+    if (diff==="easy") {
+        label.textContent="简单";
+        toRemove=randint(70,80);
+        markCnt=21;
+    } else if (diff==="medium") {
+        label.textContent="中等";
+        toRemove=randint(116,126);
+        markCnt=39;
+    } else if (diff==="hard") {
+        label.textContent="困难";
+        toRemove=randint(170,180);
+        markCnt=55;
+    } else {
+        label.textContent="简单";
+        toRemove=randint(70,80);
+        markCnt=21;
+    }
 } else {
-    label.textContent="简单";
-    toRemove=randint(13,15);
-    markCnt=4;
+    if (diff==="easy") {
+        label.textContent="简单";
+        toRemove=randint(140,160);
+        markCnt=42;
+    } else if (diff==="medium") {
+        label.textContent="中等";
+        toRemove=randint(232,252);
+        markCnt=78;
+    } else if (diff==="hard") {
+        label.textContent="困难";
+        toRemove=randint(340,360);
+        markCnt=110;
+    } else {
+        label.textContent="简单";
+        toRemove=randint(140,160);
+        markCnt=42;
+    }
 }
 
 newGame();
