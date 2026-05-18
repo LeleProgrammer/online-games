@@ -289,6 +289,16 @@ function checkVictory() {
     }
     for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE-2;++j) if (board[i][j]===board[i][j+1] && board[i][j]===board[i][j+2]) return false;
     for (let j=0;j<SIZE;++j) for (let i=0;i<SIZE-2;++i) if (board[i][j]===board[i+1][j] && board[i][j]===board[i+2][j]) return false;
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) {
+        if (i<SIZE-1) { // down
+            if (markDown[i][j]===0 && board[i][j]!==board[i+1][j]) return false;
+            if (markDown[i][j]===1 && board[i][j]===board[i+1][j]) return false;
+        }
+        if (j<SIZE-1) { // right
+            if (markRight[i][j]===0 && board[i][j]!==board[i][j+1]) return false;
+            if (markRight[i][j]===1 && board[i][j]===board[i][j+1]) return false;
+        }
+    }
     return true;
 }
 
