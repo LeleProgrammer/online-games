@@ -197,7 +197,7 @@ function createCell(i,j) {
     cell.addEventListener("click",(e)=>{
         e.stopPropagation();
         selectCell(i,j);
-    })
+    });
     return cell;
 }
 
