@@ -371,6 +371,40 @@ window.addEventListener("keydown",function(e) {
         clearValue();
         e.preventDefault();
     }
+    if (key==="w") {
+        e.preventDefault();
+        if (selectX!==-1 && selectY!==-1) {
+            let x=selectX-1;
+            let y=selectY;
+            while (x>=0 && locked[x][y]===1) x--;
+            if (x!==-1) selectX=x;
+        }
+    } else if (key==="s") {
+        e.preventDefault();
+        if (selectX!==-1 && selectY!==-1) {
+            let x=selectX+1;
+            let y=selectY;
+            while (x<SIZE && locked[x][y]===1) x++;
+            if (x!==SIZE) selectX=x;
+        }
+    } else if (key==="d") {
+        e.preventDefault();
+        if (selectX!==-1 && selectY!==-1) {
+            let x=selectX;
+            let y=selectY+1;
+            while (y<SIZE && locked[x][y]===1) y++;
+            if (y!==SIZE) selectY=y;
+        }
+    } else if (key==="a") {
+        e.preventDefault();
+        if (selectX!==-1 && selectY!==-1) {
+            let x=selectX;
+            let y=selectY-1;
+            while (y>=0 && locked[x][y]===1) y--;
+            if (y!==-1) selectY=y;
+        }
+    }
+    renderGrid();
 });
 
 const clearBtn=document.createElement("button");
