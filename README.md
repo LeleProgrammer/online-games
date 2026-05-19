@@ -22,4 +22,4 @@ git clone https://github.com/LeleProgrammer/online-games.git
 cd online-games
 ```
 
-直接用浏览器打开 index.html 即可。
+直接用浏览器打开 `index.html` 即可。
