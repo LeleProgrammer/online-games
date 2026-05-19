@@ -260,6 +260,40 @@ function init() {
             deleteNumber();
             e.preventDefault();
         }
+        if (key==="w") {
+            e.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX-1;
+                let y=selectY;
+                while (x>=0 && defa[x][y]===1) x--;
+                if (x!==-1) selectX=x;
+            }
+        } else if (key==="s") {
+            e.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX+1;
+                let y=selectY;
+                while (x<9 && defa[x][y]===1) x++;
+                if (x!==9) selectX=x;
+            }
+        } else if (key==="d") {
+            e.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX;
+                let y=selectY+1;
+                while (y<9 && defa[x][y]===1) y++;
+                if (y!==9) selectY=y;
+            }
+        } else if (key==="a") {
+            e.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX;
+                let y=selectY-1;
+                while (y>=0 && defa[x][y]===1) y--;
+                if (y!==-1) selectY=y;
+            }
+        }
+        renderGrid();
     })
 }
 
