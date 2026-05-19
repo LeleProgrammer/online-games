@@ -335,6 +335,40 @@ function bindActions() {
             clearValue();
             event.preventDefault();
         }
+        if (key==="w") {
+            event.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX-1;
+                let y=selectY;
+                while (x>=0 && locked[x][y]===1) x--;
+                if (x!==-1) selectX=x;
+            }
+        } else if (key==="s") {
+            event.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX+1;
+                let y=selectY;
+                while (x<SIZE && locked[x][y]===1) x++;
+                if (x!==SIZE) selectX=x;
+            }
+        } else if (key==="d") {
+            event.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX;
+                let y=selectY+1;
+                while (y<SIZE && locked[x][y]===1) y++;
+                if (y!==SIZE) selectY=y;
+            }
+        } else if (key==="a") {
+            event.preventDefault();
+            if (selectX!==-1 && selectY!==-1) {
+                let x=selectX;
+                let y=selectY-1;
+                while (y>=0 && locked[x][y]===1) y--;
+                if (y!==-1) selectY=y;
+            }
+        }
+        renderGrid();
     });
     window.addEventListener("resize",()=>{
         renderGrid();
