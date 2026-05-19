@@ -122,7 +122,7 @@ function renderGrid() {
         }
         table.appendChild(tr);
     }
-    if (selectX!==-1 && selectY!==-1) highlightAffected(selectX,selectY);
+    if (selectX!==-1 && selectY!==-1) highlight(selectX,selectY);
 }
 
 function setNumber(num) {
