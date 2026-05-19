@@ -22,11 +22,65 @@ let locked=[];
 let markRight=[];
 let markDown=[];
 let randCount=100;
-let toMark=6;
-let toRemove=6;
+let toMark=0;
+let toRemove=0;
 let selectX=-1;
 let selectY=-1;
 let done=0;
+
+// =================== LOAD DIFFICULTIE AND SIZE ===================
+
+const label=document.getElementById("difficulty");
+const params=new URLSearchParams(window.location.search);
+let diff=params.get("diff");
+let size=params.get("size");
+
+if (size!=="4" && size!=="6" && size!=="8" && size!=="9") {
+    size="4";
+}
+if (diff!=="medium" && diff!=="hard") {
+    diff="medium";
+}
+
+SIZE=parseInt(size);
+
+if (size==="4") {
+    label.textContent="4x4";
+    toRemove=randint(12,15);
+    toMark=randint(3,5);
+} else if (size==="6") {
+    if (diff==="medium") {
+        label.textContent="6x6 正常";
+        toRemove=randint(26,30);
+        toMark=randint(16,18);
+    } else {
+        label.textContent="6x6 困难";
+        toRemove=randint(33,36);
+        toMark=randint(14,17);
+    }
+} else if (size==="8") {
+    if (diff==="medium") {
+        label.textContent="8x8 正常";
+        toRemove=randint(46,53);
+        toMark=randint(28,32);
+    } else {
+        label.textContent="8x8 困难";
+        toRemove=randint(59,64);
+        toMark=randint(25,30);
+    }
+} else {
+    if (diff==="medium") {
+        label.textContent="9x9 正常";
+        toRemove=randint(59,68);
+        toMark=randint(36,41);
+    } else {
+        label.textContent="9x9 困难";
+        toRemove=randint(74,81);
+        toMark=randint(32,38);
+    }
+}
+
+// =================================================================
 
 function randint(l,r) {
     return Math.floor(Math.random()*(r-l+1))+l;
