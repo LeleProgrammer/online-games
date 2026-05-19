@@ -206,12 +206,81 @@ function selectCell(i,j) {
     renderGrid();
 }
 
+function showMessage(msg) {
+    const div=document.getElementById("message");
+    div.textContent=msg;
+}
+
+function clearMessage() {
+    const div=document.getElementById("message");
+    div.textContent="";
+}
+
 function setValue(value) {
-    ;
+    if (done) return;
+    if (selectX===-1 || selectY===-1) {
+        showMessage("请先选择一个格子");
+        return;
+    }
+    if (locked[selectX][selectY]===1) {
+        showMessage("你无法修改这个格子");
+        return;
+    }
+    if (board[selectX][selectY]===value) {
+        board[selectX][selectY]=0;
+        showMessage("已删除");
+    } else {
+        board[selectX][selectY]=value;
+        showMessage("已填入");
+    }
+    renderGrid();
+    if (checkVictory()) {
+        showMessage("🎉 You Win! 🎉");
+        done=true;
+    }
 }
 
 function clearValue() {
-    ;
+    if (done) return;
+    if (selectX===-1 || selectY===-1) {
+        showMessage("请先选择一个格子");
+        return;
+    }
+    if (locked[selectX][selectY]===1) {
+        showMessage("你无法修改这个格子");
+        return;
+    }
+    if (board[selectX][selectY]===0) return;
+    board[selectX][selectY]=0;
+    showMessage("已删除");
+    renderGrid();
+}
+
+function checkVictory() {
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) if (board[i][j]===0) return false;
+    for (let i=0;i<SIZE;++i) {
+        const st=new Set();
+        for (let j=0;j<SIZE;++j) st.add(board[i][j]);
+        if (st.size!==SIZE) return false;
+    }
+    for (let j=0;j<SIZE;++j) {
+        const st=new Set();
+        for (let i=0;i<SIZE;++i) st.add(board[i][j]);
+        if (st.size!==SIZE) return false;
+    }
+    for (let i=0;i<SIZE;++i) for (let j=0;j<SIZE;++j) {
+        if (i<SIZE-1) {
+            if (markDown[i][j]===1 && (solution[i][j]<solution[i+1][j])!==(board[i][j]<board[i+1][j])) {
+                return false;
+            }
+        }
+        if (j<SIZE-1) {
+            if (markRight[i][j]===1 && (solution[i][j]<solution[i][j+1])!==(board[i][j]<board[i][j+1])) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 const actionDiv=document.getElementById("actionDiv");
@@ -220,13 +289,31 @@ for (let i=1;i<=SIZE;++i) {
     const numBtn=document.createElement("button");
     numBtn.className="action-btn";
     numBtn.textContent=i;
+    numBtn.addEventListener("click",()=>{
+        setValue(i);
+    });
     actionDiv.appendChild(numBtn);
 }
+
+window.addEventListener("keydown",function(e) {
+    const key=e.key;
+    for (let i=1;i<=SIZE;++i) {
+        if (key===`${i}` || key===`NumPad${i}`) {
+            setValue(i);
+            e.preventDefault();
+        }
+    }
+    if (key==="Backspace" || key==="Delete") {
+        clearValue();
+        e.preventDefault();
+    }
+});
 
 const clearBtn=document.createElement("button");
 clearBtn.className="action-btn";
 clearBtn.classList.add("clear-btn");
 clearBtn.textContent="🗑️ 清除";
+clearBtn.addEventListener("click",clearValue);
 actionDiv.appendChild(clearBtn);
 
 newGame();
