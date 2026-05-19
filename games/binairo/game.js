@@ -337,7 +337,7 @@ function bindActions() {
         }
     });
     window.addEventListener("resize",()=>{
-        renderGrid;
+        renderGrid();
     });
 }
 
