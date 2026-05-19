@@ -27,6 +27,8 @@ let toRemove=0;
 let selectX=-1;
 let selectY=-1;
 let done=0;
+let startTime=performance.now();
+let timerEvent=null;
 
 // =================== LOAD DIFFICULTIE AND SIZE ===================
 
@@ -143,6 +145,12 @@ function newGame() {
         else markRight[i][j]=1;
     }
     renderGrid();
+    if (timerEvent) clearInterval(timerEvent);
+    let timer=document.getElementById("timer");
+    timerEvent=setInterval(()=>{
+        const elapsed=(performance.now()-startTime)/1000;
+        timer.textContent=elapsed.toFixed(2);
+    },30);
 }
 
 function renderGrid() {
@@ -291,6 +299,8 @@ function setValue(value) {
     if (checkVictory()) {
         showMessage("🎉 You Win! 🎉");
         done=true;
+        if (timerEvent) clearInterval(timerEvent);
+        timerEvent=null;
     }
 }
 
