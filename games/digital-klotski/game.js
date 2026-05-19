@@ -21,7 +21,7 @@ function getSize() {
     if (size>=3 && size<=12) return size;
     else if (size===16) return size;
     else if (size===20) return size;
-    else return 3
+    else return 3;
 }
 
 const SIZE=getSize();
