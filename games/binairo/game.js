@@ -181,10 +181,10 @@ function createCell(i,j) {
     cell.className="cell";
     const value=board[i][j];
     if (value===1) {
-        cell.textContent="⚫";
+        cell.textContent="●";
         cell.classList.add("black");
     } else if (value===0) {
-        cell.textContent="⚪";
+        cell.textContent="○";
         cell.classList.add("white");
     } else {
         cell.textContent="";
@@ -260,7 +260,7 @@ function setValue(value) {
         showMessage("已删除");
     } else {
         board[selectX][selectY]=value;
-        showMessage(`已填入 ${value===0?'⚪ 白子':'⚫ 黑子'}`);
+        showMessage(`已填入 ${value===0?'○ 白子':'● 黑子'}`);
     }
     renderGrid();
     if (checkVictory()) {
